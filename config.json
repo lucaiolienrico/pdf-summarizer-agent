@@ -2,7 +2,7 @@
   "project_name": "PDF Summarizer Agent",
   "version": "1.0.0",
   "ai_provider": "openai",
-  "model": "gpt-4-turbo",
+    "model": "gpt-3.5-turbo",
   "polling_interval": 300,
   "max_pdf_size_mb": 50,
   "summary_max_length": 500,
