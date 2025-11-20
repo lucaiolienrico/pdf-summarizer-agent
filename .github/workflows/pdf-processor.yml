@@ -1,0 +1,49 @@
+name: PDF Summary Agent
+
+on:
+  push:
+    paths:
+      - '**.pdf'
+  workflow_dispatch:
+    inputs:
+      pdf_url:
+        description: 'URL del PDF da processare'
+        required: false
+
+jobs:
+  process-pdf:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Process PDF files
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python src/main.py
+      
+      - name: Commit summaries
+        if: success()
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "PDF Summary Bot"
+          git add summaries/ || true
+          git commit -m "🤖 Auto-generated PDF summaries" || true
+          git push
