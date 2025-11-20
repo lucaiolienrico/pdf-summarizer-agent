@@ -37,7 +37,7 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-python fonte/principale.py      
+  python fonte/principale.py      
       - name: Commit summaries
         if: success()
         run: |
