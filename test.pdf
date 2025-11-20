@@ -1,0 +1,14 @@
+Test PDF Document
+This is a test PDF file for the PDF Summarizer Agent.
+
+Section 1: Introduction
+This document is created to test the PDF processing workflow.
+The system should extract text from this file and generate a summary using AI.
+
+Section 2: Content
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+Section 3: Conclusion
+This test file demonstrates the PDF Summarizer Agent workflow.
+The automated system processes PDFs and publishes summaries to GitHub.
